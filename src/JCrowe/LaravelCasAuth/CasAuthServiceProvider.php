@@ -1,12 +1,13 @@
 <?php namespace JCrowe\LaravelCasAuth;
 
 use Illuminate\Support\ServiceProvider;
+use JCrowe\LaravelCasAuth\LaravelCasUserProvider as UserProvider;
 
 class CasAuthServiceProvider extends ServiceProvider {
 
 
     /**
-     * Bootstrapt the provider. Publish configs
+     * Bootstrap the provider. Publish configs
      *
      * @return void
      */
@@ -26,8 +27,12 @@ class CasAuthServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app['guard']->extend('laravel-cas', function() {
-            return $this->app->make(LaravelCasAuthGuardProvider::class);
+        $this->app['auth']->extend('laravel-cas', function() {
+            return new LaravelCasAuthGuardProvider(
+                new UserProvider(),
+                $this->app->make(\Symfony\Component\HttpFoundation\Session\SessionInterface::class),
+                $this->app->make(\Symfony\Component\HttpFoundation\Request::class)
+            );
         });
     }
 
