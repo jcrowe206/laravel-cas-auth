@@ -107,7 +107,7 @@ class LaravelCasAuthGuardProvider extends Guard {
         SessionInterface $session,
         Request $request = null)
     {
-        $this->options = array_merge($this->defaults, config('laravel-cas'));
+        $this->options = array_merge($this->defaults, config('laravel-cas', []));
 
         parent::__construct($provider, $session, $request);
     }
@@ -120,7 +120,6 @@ class LaravelCasAuthGuardProvider extends Guard {
      */
     public function user()
     {
-        dd("FUCKER");
         if ($this->loggedOut) {
             return null;
         }
