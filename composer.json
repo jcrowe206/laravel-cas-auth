@@ -1,5 +1,5 @@
 {
-  "name" : "Laravel CAS Authentication Client",
+  "name" : "j-crowe/laravel-cas-auth",
   "description" : "Add CAS SSO Authentication to Laravel 5. Integerates with Guard so you can continue to use Auth::user(), etc.",
   "keywords" : ["CAS", "phpCas", "SSO", "laravel", "Authentication", "Auth"],
   "license" : "MIT",
